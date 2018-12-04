@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:35:05 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/04 11:36:20 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/04 12:12:15 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ int		ft_usage(void)
 
 int		main(int argc, char **argv)
 {
-	int fd;
+	int		fd;
+	char	**tab;
 
 	fd = 0;
+	tab = NULL;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		if (!ft_check_file(fd))
+		tab = ft_check_file(fd);
+		if (!ft_check_errors(tab))
 			return (ft_usage());
 		printf("Les tetriminos sont corrects !");
 //		ft_create_list();

@@ -6,13 +6,13 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:15:43 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/04 11:36:17 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/04 12:10:48 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_check_file(int fd)
+char	**ft_check_file(int fd)
 {
 	int		i;
 	int		j;
@@ -49,7 +49,7 @@ int		ft_check_file(int fd)
 		i++;
 	}
 	printf("------------------>fin<-------------------\n");
-	return (ft_check_errors(tab));
+	return (tab);
 }
 
 int		ft_check_errors(char **tab)
@@ -81,6 +81,8 @@ int		ft_check_errors(char **tab)
 
 		//printf("4eme if passe avec ft2\n");
 	}
+	if (i % 5 != 0)
+		return (0);
 	return (1);
 }
 
