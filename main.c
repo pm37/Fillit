@@ -21,6 +21,7 @@ int		ft_usage(void)
 int		main(int argc, char **argv)
 {
 	int		fd;
+	int		i;
 	char	**tab;
 	t_tetri_list *list;
 
@@ -35,7 +36,9 @@ int		main(int argc, char **argv)
 			return (ft_usage());
 		printf("Les tetriminos sont corrects !");
 		ft_create_list(tab, &list);
-//		ft_complete_square();
+		i = ft_get_min_square_side(list);
+		while ()
+			ft_place_tetri();
 
 	close(fd);
 	}
