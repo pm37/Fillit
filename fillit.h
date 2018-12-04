@@ -24,14 +24,16 @@
 # include "get_next_line.h"
 
 
-/*typedef struct		s_list
+typedef struct		s_tetri_list
 {
-	char			tetriminos[4][4];
-	struct s_list	*next;
-}					t_list;*/
+	char			**tetriminos;
+  char      id;
+	struct s_tetri_list	*next;
+}					t_tetri_list;
 
 char	**ft_check_file(int fd);
 int     ft_check_errors(char **tab);
 int     ft_check_errors_2(char **tab, int i, int *sharp);
+int   ft_create_list(char **tab, t_tetri_list **list);
 
 #endif
