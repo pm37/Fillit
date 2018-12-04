@@ -6,13 +6,13 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:15:43 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/04 12:10:48 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/04 13:09:57 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**ft_check_file(int fd)
+char	**ft_read_file(int fd)
 {
 	int		i;
 	int		j;
@@ -61,7 +61,7 @@ int		ft_check_errors(char **tab)
 	sharp = 0;
 	while (tab[++i])
 	{
-		if ((((i + 1) % 5 != 0) && ft_strlen(tab[i]) != 4) || sharp > 4)
+		if (i > 129 || (((i + 1) % 5 != 0) && ft_strlen(tab[i]) != 4) || sharp > 4)
 			return (0);
 		//printf("1er if passe\n");
 		if (((i + 1) % 5 == 0) && ft_strlen(tab[i]) != 0)
@@ -100,7 +100,7 @@ int		ft_check_errors_2(char **tab, int i, int *sharp)
 			return (0);
 	//printf("ft2: 1er if passe\n");
 		if (tab[i][j] == '#')
-		{	
+		{
 			(*sharp)++;
 			if (((j > 0) && tab[i][j - 1] == '#') || ((j < 3) &&
 			tab[i][j + 1] == '#'))
@@ -111,7 +111,7 @@ int		ft_check_errors_2(char **tab, int i, int *sharp)
 			if (!check)
 				return (0);
 		}
-		printf("ft2 -> i : %d, j : %d\n", i, j);
+		//printf("ft2 -> i : %d, j : %d\n", i, j);
 	}
 	return (1);
 }
