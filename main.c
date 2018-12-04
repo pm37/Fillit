@@ -22,9 +22,11 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	char	**tab;
+	t_tetri_list *list;
 
 	fd = 0;
 	tab = NULL;
+	list = NULL;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
@@ -32,9 +34,10 @@ int		main(int argc, char **argv)
 		if (!ft_check_errors(tab))
 			return (ft_usage());
 		printf("Les tetriminos sont corrects !");
-//		ft_create_list();
+		ft_create_list(tab, &list);
 //		ft_complete_square();
 
 	close(fd);
 	}
+	return (0);
 }
