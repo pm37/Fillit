@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fillit.h"
+
 int   ft_get_min_square_side(t_tetri_list **list)
 {
   int i;
@@ -17,10 +19,10 @@ int   ft_get_min_square_side(t_tetri_list **list)
   i = 0;
   if (!list)
     return (0);
-  while (list)
+  while ((*list))
   {
-    list = list->next;
-    i++:
+    (*list) = (*list)->next;
+    i++;
   }
   return(i);
 }

@@ -31,14 +31,14 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		tab = ft_check_file(fd);
+		tab = ft_read_file(fd);
 		if (!ft_check_errors(tab))
 			return (ft_usage());
 		printf("Les tetriminos sont corrects !");
 		ft_create_list(tab, &list);
-		i = ft_get_min_square_side(list);
-		while ()
-			ft_place_tetri();
+		i = ft_get_min_square_side(&list);
+		//while (1)
+		//	ft_place_tetri();
 
 	close(fd);
 	}

@@ -31,7 +31,7 @@ typedef struct		s_tetri_list
 	struct s_tetri_list	*next;
 }					t_tetri_list;
 
-char	**ft_check_file(int fd);
+char	**ft_read_file(int fd);
 int		ft_check_errors(char **tab);
 int		ft_check_errors_2(char **tab, int i, int *sharp);
 int		ft_create_list(char **tab, t_tetri_list **list);
