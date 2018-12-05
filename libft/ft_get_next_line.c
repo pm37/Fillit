@@ -9,8 +9,7 @@
 /*   Updated: 2018/12/03 14:46:30 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "get_next_line.h"
+#include "libft.h"
 
 static int	ft_read_more(const int fd, char **str)
 {
@@ -56,7 +55,7 @@ static int	ft_update_line_and_str(char **line, char **str)
 		return ((*str = ft_strnew(0)) ? 1 : 0);
 }
 
-int			get_next_line(const int fd, char **line)
+int			ft_get_next_line(const int fd, char **line)
 {
 	static char *str[OPEN_MAXI];
 	char		*temp;

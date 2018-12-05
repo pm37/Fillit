@@ -23,7 +23,7 @@ char	**ft_read_file(int fd)
 	i = 0;
 	tab = NULL;
 	line = (ft_strnew(0));
-	while (get_next_line(fd, &line))
+	while (ft_get_next_line(fd, &line))
 	{
 		j = 0;
 		temp = tab;
