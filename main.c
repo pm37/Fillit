@@ -21,7 +21,7 @@ int		ft_usage(void)
 int		main(int argc, char **argv)
 {
 	int		fd;
-	int		i;
+	int		sqr_size;
 	char	**tab;
 	t_tetri_list *list;
 
@@ -32,23 +32,17 @@ int		main(int argc, char **argv)
 	{
 		fd = open(argv[1], O_RDONLY);
 		tab = ft_read_file(fd);
+		close(fd);
 		if (!ft_check_errors(tab))
 			return (ft_usage());
-		printf("Les tetriminos sont corrects !");
+		//printf("Les tetriminos sont corrects !");
 		ft_create_list(tab, &list);
-<<<<<<< HEAD
-		i = ft_get_min_square_side(list);
-		ft_init_sol_tab(&tab, i);
-		while (!ft_complete_tetris(&list, sqr_size))
-			ft_init_sol_tab(&tab, ++sqr_size);
-		ft_print
-=======
-		i = ft_get_min_square_side(&list);
-		//while (1)
-		//	ft_place_tetri();
-
->>>>>>> 9007d60054d58688be6d6e594c5828d5ebe5f936
-	close(fd);
+		sqr_size = ft_get_min_sqr_size(list);
+		ft_init_sol_tab(&tab, sqr_size);
+		while (!ft_complete_tetris(list, sqr_size++))
+			ft_init_sol_tab(&tab, sqr_size);
+		ft_display_tab(tab);
+		ft_free_tab(&tab);
 	}
 	return (0);
 }
