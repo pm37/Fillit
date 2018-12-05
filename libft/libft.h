@@ -16,6 +16,8 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# define BUFF_SIZE 50000
+# define OPEN_MAXI 10240
 
 typedef struct		s_list
 {
@@ -24,6 +26,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+int					ft_get_next_line(const int fd, char **line);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_isprint(int c);

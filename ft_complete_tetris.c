@@ -20,6 +20,8 @@ char  **ft_init_sol_tab(char ***tab)
   //complete tab with '.'
 }
 
+#include "fillit.h"
+
 int   ft_get_min_square_side(t_tetri_list **list)
 {
   int sqr_size;
@@ -27,10 +29,15 @@ int   ft_get_min_square_side(t_tetri_list **list)
   sqr_size = 0;
   if (!list)
     return (0);
-  while (list)
+  while ((*list))
   {
+<<<<<<< HEAD
     list = list->next;
     sqr_size++:
+=======
+    (*list) = (*list)->next;
+    i++;
+>>>>>>> 9007d60054d58688be6d6e594c5828d5ebe5f936
   }
   return(sqr_size);
 }
