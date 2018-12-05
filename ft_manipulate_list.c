@@ -11,83 +11,50 @@ char **ft_rebuild_tetri(char **tetri)
   char **tab;
 
   start = 0;
-
   // Determine height and start(Y) of shape and malloc first index of tab
   i = -1;
   height = 0;
   while (++i < 4)
+  {
     height += (ft_strchr(tetri[i], '#')) ? 1 : 0;
-
-  i = 0;
-  while (!(ft_strchr(tetri[i], '#')))
-    i++;
-  start = SET_Y(i);
-
+    if (height == 1 && start == 0)
+      start = SET_Y(i);
+  }
   if (!(tab = (char**)malloc(sizeof(char*) * (height + 1))))
     return (NULL);
   tab[height] = NULL;
 
-  // Print results
-  ft_putendl("");
-  ft_putstr("Start rebuild");
-  ft_putendl("");
-  ft_putstr("|- Height : ");
-  ft_putnbr(height);
-  ft_putendl("");
-  ft_putstr("|- First # on y = ");
-  ft_putnbr(GET_Y(start));
-
   // Determinate width and start(X) of shape
-  i = -1;
+  j = -1;
   width = 0;
-  while (++i < 4)
+  while (++j < 4)
   {
-    j = -1;
-    max = 0;
-    while (j < 4)
+    i = -1;
+    while (++i< 4)
     {
-      max += (tetri[i][++j] == '#') ? 1 : 0;
+      if (tetri[i][j] == '#')
+      {
+        width++;
+        break;
+      }
     }
-    if (width < max)
-      width = max;
   }
-
   i = 0;
   while (!(ft_strchr(tetri[i], '#')))
     i++;
   j = 0;
-  while (tetri[i][j] != '#')
+  while (tetri[i][j] != '#' && (tetri[i][j + 1] != '#' || tetri[i + 1][j] != '#'))
     j++;
   start = SET_X(j);
 
-  // Print results
-  ft_putendl("");
-  ft_putstr("|- Width : ");
-  ft_putnbr(width);
-  ft_putendl("");
-  ft_putstr("|- First # on x = ");
-  ft_putnbr(GET_X(start));
-  ft_putendl("");
-  ft_putstr("|- i = ");
-  ft_putnbr(i);
-  ft_putendl("");
-
-  // If a line contain a # copy it of width char
+  // If a line contain a # copy it of width chars
   j = 0;
-  while (ft_strchr(tetri[i], '#'))
+  while (tetri[i] && ft_strchr(tetri[i], '#'))
   {
     tab[j] = ft_strsub(tetri[i], GET_X(start), width);
     i++;
     j++;
   }
-  // Print results
-  i = 0;
-  while (tab[i])
-  {
-    ft_putendl(tab[i]);
-    i++;
-  }
-  ft_putendl("");
   return (tab);
 }
 
@@ -98,25 +65,19 @@ int ft_create_list_element(char **tetri, t_tetri_list **list, char id)
 
   if (tetri)
   {
-    // Search a position for the future element
     tmp_list = (*list);
     while (tmp_list && tmp_list->next)
       tmp_list = tmp_list->next;
-
-    // Build of the element
     if ((element = (t_tetri_list*)malloc(sizeof(t_tetri_list))))
     {
-  		//if (!(element->tetriminos = ft_rebuild_tetri(tetri)))
-      //  return (0);
-      ft_rebuild_tetri(tetri);
+  		if (!(element->tetriminos = ft_rebuild_tetri(tetri)))
+        return (0);
       element->id = id;
       element->placed = 0;
       element->next = NULL;
     }
     else
       return (0);
-
-    // Add of the element.
     if (tmp_list)
       tmp_list->next = element;
     else
@@ -135,11 +96,10 @@ int   ft_create_list(char **tab, t_tetri_list **list)
   {
     i = 0;
     id = 'A';
-    while (tab[i - 1])
+    while ((tab[i + 4]))
     {
-      ft_create_list_element(&tab[i], list, id);
-      i += (tab[i + 5]) ? 5 : 4;
-      id++;
+      ft_create_list_element(&tab[i], list, id++);
+      i += 5;
     }
   }
   return (0);
