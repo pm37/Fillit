@@ -11,7 +11,19 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-
+void ft_free_tab(char ***tab)
+{
+	if (!tab)
+		return ;
+	while (*(tab[i])
+	{
+		free(*(tab[i]);
+		*(tab[i]) = NULL;
+		i++;
+	}
+	free(*tab);
+	*tab = NULL;
+}
 char	**ft_read_file(int fd)
 {
 	int		i;
@@ -23,7 +35,7 @@ char	**ft_read_file(int fd)
 	i = 0;
 	tab = NULL;
 	line = (ft_strnew(0));
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd, &line) && i < 131)
 	{
 		j = 0;
 		temp = tab;
@@ -49,7 +61,7 @@ char	**ft_read_file(int fd)
 		i++;
 	}
 	printf("------------------>fin<-------------------\n");
-	return (tab);
+	return ((i < 131) ? tab : ft_free_tab(tab));
 }
 
 int		ft_check_errors(char **tab)

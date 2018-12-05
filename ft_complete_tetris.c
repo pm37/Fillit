@@ -9,18 +9,33 @@
 /*   Updated: 2018/12/04 16:31:11 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+char  **ft_init_sol_tab(char ***tab)
+{
+  int i;
+  int j;
+  //free memory
+  ft_free_tab(tab);
+  //allocate memory
+
+  //complete tab with '.'
+}
 
 int   ft_get_min_square_side(t_tetri_list **list)
 {
-  int i;
+  int sqr_size;
 
-  i = 0;
+  sqr_size = 0;
   if (!list)
     return (0);
   while (list)
   {
     list = list->next;
-    i++:
+    sqr_size++:
   }
-  return(i);
+  return(sqr_size);
+}
+
+int   ft_complete_tetris(t_tetri_list **list, int sqr_size)
+{
+
 }

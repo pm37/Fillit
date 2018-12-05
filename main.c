@@ -37,9 +37,10 @@ int		main(int argc, char **argv)
 		printf("Les tetriminos sont corrects !");
 		ft_create_list(tab, &list);
 		i = ft_get_min_square_side(list);
-		while ()
-			ft_place_tetri();
-
+		ft_init_sol_tab(&tab, i);
+		while (!ft_complete_tetris(&list, sqr_size))
+			ft_init_sol_tab(&tab, ++sqr_size);
+		ft_print
 	close(fd);
 	}
 	return (0);
