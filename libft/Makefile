@@ -13,7 +13,7 @@
 NAME = libft.a
 
 SRC = 	ft_get_next_line.c	\
-		ft_sqrt									\
+		ft_sqrt.c								\
 		ft_recursive_power.c		\
 		ft_atoi.c		\
 		ft_bzero.c		\
