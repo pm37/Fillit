@@ -52,6 +52,7 @@ char **ft_rebuild_tetri(char **tetri)
   while (tetri[i] && ft_strchr(tetri[i], '#'))
   {
     tab[j] = ft_strsub(tetri[i], GET_X(start), width);
+    ft_putendl(tab[j]);
     i++;
     j++;
   }
@@ -96,10 +97,10 @@ int   ft_create_list(char **tab, t_tetri_list **list)
   {
     i = 0;
     id = 'A';
-    while ((tab[i + 4]))
+    while ((tab[i]))
     {
       ft_create_list_element(&tab[i], list, id++);
-      i += 5;
+      i += (tab[i + 4]) ? 5 : 4;
     }
   }
   return (0);
