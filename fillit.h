@@ -40,5 +40,8 @@ int		ft_check_errors(char **tab);
 int		ft_check_errors_2(char **tab, int i, int *sharp);
 int		ft_create_list(char **tab, t_tetri_list **list);
 int		ft_get_min_square_side(t_tetri_list **list);
+char  **ft_init_sol_tab(char ***tab);
+int   ft_get_min_sqr_size(t_tetri_list **list);
+int   ft_complete_tetris(t_tetri_list **list, int sqr_size);
 
 #endif
