@@ -72,6 +72,7 @@ void  ft_put_tetriminos(t_tetri_list **list, char id, char **tab, float coor)
   }
 }
 
+/* fonction non terminee :
 int   ft_complete_tetris(t_tetri_list **list, char **tab, char id,
 float coor)
 {
@@ -88,4 +89,4 @@ float coor)
     return (ft_complete_tetris(list, tab, coor + 0,1));
   }
   else if (ft_complete_tetris(list, tab, ))
-}
+}*/
