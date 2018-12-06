@@ -58,7 +58,7 @@ char	**ft_read_file(int fd)
 	}
 	tab[i] = NULL;
 	i = 0;
-	printf("--------->le tableau enregistre<----------\n");
+/*	printf("--------->le tableau enregistre<----------\n");
 	while (tab[i])
 	{
 		ft_putstr(tab[i]);

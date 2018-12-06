@@ -12,6 +12,10 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
+# define SET_X(x) ((float)x)
+# define SET_Y(y) ((float)y / 10)
+# define GET_X(f) (int)(f)
+# define GET_Y(f) (int)((f - (int)f) * 10)
 
 # include <stdio.h>
 
@@ -27,6 +31,7 @@ typedef struct		s_tetri_list
 {
 	char			**tetriminos;
   char      id;
+	int 			placed;
 	struct s_tetri_list	*next;
 }					t_tetri_list;
 
