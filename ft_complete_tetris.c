@@ -36,17 +36,25 @@ tab[0][i] = NULL;
 
 int   ft_get_min_sqr_size(t_tetri_list **list)
 {
+  int area;
   int sqr_size;
 
+  area = 0;
   sqr_size = 0;
   if (!list)
     return (0);
   while (list)
   {
     list = list->next;
-    sqr_size++:
+    area += 4:
   }
-  return(sqr_size);
+  while (area)
+  {
+      if (sqr_size = ft_sqrt(area))
+        return (sqr_size);
+    area++;
+  }
+  return(0);
 }
 
 void  ft_put_tetriminos(t_tetri_list **list, char id, char **tab, float coor)
