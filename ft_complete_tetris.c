@@ -73,15 +73,13 @@ float coor)
 {
   t_tetri_list  *element;
 
-  element = *list;
-  if (ft_is_tetris_complete)
-    return (1);
-  while (!ft_check_space_availability(element, tab, coor))
-    element=element->next;
-  if (element)
+  if (elem = ft_check)
   {
     ft_put_tetriminos(element, tab, coor);
-    return (ft_complete_tetris(list, tab, coor + 0,1));
+    if (coor + element->width1)
+      return (ft_complete_tetris(list, tab, coor + element->width1));
+    else
+      return (ft_complete_tetris(list, tab, coo))
   }
   else if (ft_complete_tetris(list, tab, ))
 }
