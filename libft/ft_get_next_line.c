@@ -6,9 +6,10 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 16:43:24 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/03 14:46:30 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/06 15:33:39 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int	ft_read_more(const int fd, char **str)

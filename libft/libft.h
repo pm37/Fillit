@@ -16,8 +16,8 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
-# define BUFF_SIZE 50000
-# define OPEN_MAXI 10240
+# define BUFF_SIZE 1024
+# define OPEN_MAXI 1024
 
 typedef struct		s_list
 {
@@ -34,6 +34,8 @@ int					ft_isascii(int c);
 int					ft_isalnum(int c);
 int					ft_isdigit(int c);
 int					ft_isalpha(int c);
+int					ft_sqrt(int nb);
+int					ft_recursive_power(int nb, int power);
 int					ft_atoi(const char *str);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
