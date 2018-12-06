@@ -34,7 +34,7 @@ void  ft_init_sol_tab(char ***tab, int sqr_size)
 tab[0][i] = NULL;
 }
 
-int   ft_get_min_sqr_size(t_tetri_list **list)
+int   ft_get_min_sqr_size(t_tetri_list *list)
 {
   int area;
   int sqr_size;
