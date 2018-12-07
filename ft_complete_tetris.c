@@ -9,6 +9,9 @@
 /*   Updated: 2018/12/04 16:31:11 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fillit.h"
+
 void  ft_init_sol_tab(char ***tab, int sqr_size)
 {
   int i;
@@ -46,11 +49,11 @@ int   ft_get_min_sqr_size(t_tetri_list *list)
   while (list)
   {
     list = list->next;
-    area += 4:
+    area += 4;
   }
   while (area)
   {
-      if (sqr_size = ft_sqrt(area))
+      if ((sqr_size = ft_sqrt(area)))
         return (sqr_size);
     area++;
   }
@@ -62,7 +65,6 @@ void  ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
   int i;
   int j;
 
-  element = list;
   i = 0;
   while (element->tetriminos[i])
   {
@@ -70,41 +72,76 @@ void  ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
     while (element->tetriminos[i][j])
     {
       if (element->tetriminos[i][j] == '#')
-        tab[GET_Y(coor) + i][GET_X(coor) + j] = element->id;
+        tab[GET_Y(c) + i][GET_X(c) + j] = element->id;
       j++;
     }
     i++;
   }
+  element->placed = 1;
 }
 
 float ft_get_next_free_coor(char **tab, int x, int y)
 {
   int i;
   int j;
-
+  float c;
+  ft_putendl("CALL");
+  if (x == -1)
+    return (-1);
   j = y;
   while (tab[j])
   {
-    i = ((j == y) ? (x + 1) : 0)
+    i = ((j == y) ? (x + 1) : 0);
     while (tab[j][i])
     {
       if (tab[j][i] == '.')
-        return (SET_X(i) + SET_Y(j))
+      {
+        c = SET_X(i) + SET_Y(j);
+        printf("%f\n", c);
+        ft_putendl("SUCCESS CALL");
+        ft_putstr("x: ");
+        ft_putnbr(GET_X(c));
+        ft_putendl("");
+        ft_putstr("y: ");
+        ft_putnbr(GET_Y(c));
+        ft_putendl("");
+        return (c);
+      }
       i++;
     }
     j++;
   }
+  return (-1);
+}
+
+int   ft_is_complete(t_tetri_list *list)
+{
+  while(list && (list->placed))
+    list = list->next;
+  if (!list)
+    return (1);
   return (0);
 }
 
-int   ft_complete_tetris(t_tetri_list **list, char **tab, float c)
+int   ft_complete_tetris(t_tetri_list **list, char **tab, float c, int sqr_size)
 {
   t_tetri_list  *element;
 
-  if (!c && !available_tetri)
+
+  if (c == -1)
+    return (0);
+  if (ft_is_complete(*list))
     return (1);
-  if (element = ft_check_place(list, &tab, &c))
+  if (GET_X(c) >= (sqr_size) && GET_Y(c) == (sqr_size))
+    return (0);
+  //if ((ft_get_next_free_coor(tab, GET_X(c), GET_Y(c))
+  //  return (0);
+  if (!(element = ft_check_place(list, &tab, c)))
+    return (ft_complete_tetris(list, tab, ft_get_next_free_coor(tab, GET_X(c), GET_Y(c)), sqr_size));
+  if (element)
+  {
     ft_put_tetriminos(element, tab, c);
-  ft_complete_tetris(list, tab, ft_get_next_coor(tab, c));
-  else if (c = ft_get_next_coor(tab, c))
+    return (ft_complete_tetris(list, tab, ft_get_next_free_coor(tab, GET_X(c), GET_Y(c)), sqr_size));
+  }
+  return (0);
 }

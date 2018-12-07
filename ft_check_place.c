@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-char   ft_check_place(t_tetri_list **list, char ***tab, float *c)
+t_tetri_list   *ft_check_place(t_tetri_list **list, char ***tab, float c)
 {
   t_tetri_list  *tmp_list;
   int           is_ok;
@@ -8,7 +8,7 @@ char   ft_check_place(t_tetri_list **list, char ***tab, float *c)
   int           j;
 
   tmp_list = (*list);
-  if (tab && tmp_list)
+  if (tab && tmp_list && tab[0][GET_Y(c)][GET_X(c)])
   {
     while (tmp_list)
     {
@@ -21,7 +21,7 @@ char   ft_check_place(t_tetri_list **list, char ***tab, float *c)
           j = -1;
           while (++j < ft_strlen(tmp_list->tetriminos[i]))
           {
-            if (tab[0][GET_Y(*c) + i][GET_X(*c) + j] != '.' && tmp_list->tetriminos[i][j] != '.')
+            if (tab[0][GET_Y(c) + i][GET_X(c) + j] != '.' && tmp_list->tetriminos[i][j] != '.')
             {
               is_ok = 0;
               break ;
@@ -31,10 +31,10 @@ char   ft_check_place(t_tetri_list **list, char ***tab, float *c)
             break;
         }
         if (is_ok == 1)
-          return (tmp_list->id);
+          return (tmp_list);
       }
       tmp_list = tmp_list->next;
     }
   }
-  return (0);
+  return (NULL);
 }

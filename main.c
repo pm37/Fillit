@@ -18,16 +18,28 @@ int		ft_usage(void)
 	return (0);
 }
 
+void		ft_display_tab(char **tab)
+{
+	while(*tab)
+	{
+		ft_putendl(*tab);
+		tab++;
+	}
+}
+
+
 int		main(int argc, char **argv)
 {
 	int		fd;
 	int		sqr_size;
 	char	**tab;
 	t_tetri_list *list;
+	float cursor;
 
 	fd = 0;
 	tab = NULL;
 	list = NULL;
+	cursor = 0;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
@@ -39,8 +51,13 @@ int		main(int argc, char **argv)
 		ft_create_list(tab, &list);
 		sqr_size = ft_get_min_sqr_size(list);
 		ft_init_sol_tab(&tab, sqr_size);
-		while (!ft_complete_tetris(list, sqr_size++))
+		ft_display_tab(tab);
+		while (!(ft_complete_tetris(&list, tab, cursor, sqr_size)))
+		{
 			ft_init_sol_tab(&tab, sqr_size);
+			sqr_size++;
+		}
+
 		ft_display_tab(tab);
 		ft_free_tab(&tab);
 	}

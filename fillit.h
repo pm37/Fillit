@@ -12,10 +12,10 @@
 
 #ifndef FILLIT_H
 # define FILLIT_H
-# define SET_X(x) ((float)x)
+# define SET_X(x) (float)(x)
 # define SET_Y(y) ((float)y / 10)
 # define GET_X(f) (int)(f)
-# define GET_Y(f) (int)((f - (int)f) * 10)
+# define GET_Y(f) (int)((f * 10) - ((int)f * 10))
 
 # include <stdio.h>
 
@@ -41,9 +41,12 @@ int		ft_check_errors(char **tab);
 int		ft_check_errors_2(char **tab, int i, int *sharp);
 int		ft_create_list(char **tab, t_tetri_list **list);
 void ft_free_tab(char ***tab);
-int   ft_get_min_sqr_size(t_tetri_list **list);
+int   ft_get_min_sqr_size(t_tetri_list *list);
 void  ft_init_sol_tab(char ***tab, int sqr_size);
-void  ft_display_tab(char ***tab);
-char   ft_check_place(t_tetri_list **list, char ***tab, float *c);
+t_tetri_list   *ft_check_place(t_tetri_list **list, char ***tab, float c);
+void		ft_display_tab(char **tab);
+int   ft_complete_tetris(t_tetri_list **list, char **tab, float c, int sqr_size);
+void  ft_put_tetriminos(t_tetri_list *element, char **tab, float c);
+float ft_get_next_free_coor(char **tab, int x, int y);
 
 #endif
