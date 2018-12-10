@@ -53,7 +53,7 @@ int		main(int argc, char **argv)
 		ft_init_sol_tab(&tab, sqr_size);
 		while (!(ft_complete_tetris(&list, tab, cursor, sqr_size)))
 		{
-			ft_putendl("Trying with +1 size");
+		//	ft_putendl("Trying with +1 size");
 			sqr_size++;
 			ft_init_sol_tab(&tab, sqr_size);
 		}

@@ -42,7 +42,7 @@ char **ft_rebuild_tetri(char **tetri)
   while (!(ft_strchr(tetri[i], '#')))
     i++;
   j = 0;
-  while (tetri[i][j] != '#' && (tetri[i][j + 1] != '#' || tetri[i + 1][j] != '#'))
+  while ((tetri[i][j] == '.' && tetri[i + 1][j] == '.' && tetri[i + 2][j] == '.') || (tetri[i][j] == '.' && tetri[i + 1][j] == '.' && !tetri[i + 2][j]))
     j++;
   start = SET_X(j);
 

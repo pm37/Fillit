@@ -155,17 +155,17 @@ int   ft_complete_tetris(t_tetri_list **list, char **tab, float c, int sqr_size)
   while (element)
   {
     ft_put_tetriminos(element, tab, c);
-    ft_display_tab(tab);
-    ft_putendl("");
+  //  ft_display_tab(tab);
+    //ft_putendl("");
     if (ft_complete_tetris(list, tab, ft_get_next_free_coor(tab, GET_X(c), GET_Y(c)), sqr_size))
     {
-      ft_putendl("IT SEEMS IT WORKS");
+      //ft_putendl("IT SEEMS IT WORKS");
       return (1);
     }
 
     ft_unput_tetriminos(element, tab, c);
     element = ft_check_place(&(element)->next, tab, c);
   }
-  ft_putendl("DOES NOT WORK");
+  //ft_putendl("DOES NOT WORK");
   return (0);
 }
