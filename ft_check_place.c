@@ -19,7 +19,7 @@ t_tetri_list   *ft_check_place(t_tetri_list **list, char **tab, float c)
         {
           //ft_putendl((*list)->tetriminos[i]); // Terminal log.
           j = 0;
-          while (tab[GET_Y(c) + i] && j < ft_strlen((*list)->tetriminos[i]))
+          while (tab[GET_Y(c) + i] && (size_t)j < ft_strlen((*list)->tetriminos[i]))
           {
             if (!(tab[GET_Y(c) + i][GET_X(c) + j]) || (tab[GET_Y(c) + i][GET_X(c) + j] != '.' && (*list)->tetriminos[i][j] != '.'))
             {

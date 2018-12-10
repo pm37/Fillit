@@ -7,7 +7,6 @@ char **ft_rebuild_tetri(char **tetri)
   int width;
   int height;
   float start; // [x],[y]
-  int max;
   char **tab;
 
   start = 0;
