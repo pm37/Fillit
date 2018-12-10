@@ -38,7 +38,7 @@ typedef struct		s_tetri_list
 
 char	**ft_read_file(int fd);
 int		ft_check_errors(char **tab);
-int		ft_check_errors_2(char **tab, int i, int *sharp);
+int		ft_check_errors_2(char **tab, int i, int *sharp, int *sides);
 int		ft_create_list(char **tab, t_tetri_list **list);
 void ft_free_tab(char ***tab);
 int   ft_get_min_sqr_size(t_tetri_list *list);

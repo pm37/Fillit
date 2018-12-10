@@ -6,23 +6,21 @@ char **ft_rebuild_tetri(char **tetri)
   int j;
   int width;
   int height;
-  float start; // [x],[y]
+  int k;
+  int min_j;
   char **tab;
 
-  start = 0;
   // Determine height and start(Y) of shape and malloc first index of tab
   i = -1;
   height = 0;
   while (++i < 4)
-  {
     height += (ft_strchr(tetri[i], '#')) ? 1 : 0;
-    if (height == 1 && start == 0)
-      start = SET_Y(i);
-  }
   if (!(tab = (char**)malloc(sizeof(char*) * (height + 1))))
     return (NULL);
   tab[height] = NULL;
-
+  //ft_putendl("height calculee :");
+  //ft_putnbr(height);
+  //ft_putendl("");
   // Determinate width and start(X) of shape
   j = -1;
   width = 0;
@@ -38,22 +36,46 @@ char **ft_rebuild_tetri(char **tetri)
       }
     }
   }
+  //ft_putendl("width calculee :");
+  //ft_putnbr(width);
+  //ft_putendl("");
   i = 0;
   while (!(ft_strchr(tetri[i], '#')))
     i++;
-  j = 0;
-  while ((tetri[i][j] == '.' && tetri[i + 1][j] == '.' && tetri[i + 2][j] == '.') || (tetri[i][j] == '.' && tetri[i + 1][j] == '.' && !tetri[i + 2][j]))
-    j++;
-  start = SET_X(j);
-
+  min_j = 3;
+  k = 0;
+  //ft_putendl("i et k init valent :");
+  //ft_putnbr(k);
+  //ft_putendl("");
+  //ft_putendl("debut suspect");
+  while (tetri[k + i] && (k + i) < 4)
+  {
+    j = 0;
+    while(tetri[k + i][j] == '.')
+      j++;
+    if (min_j > j)
+    {
+    //  ft_putendl("j vaut:");
+      //ft_putnbr(j);
+      //ft_putendl("");
+      min_j = j;
+    }
+    k++;
+  }
+  //ft_putendl("fin suspecte");
+  //ft_putendl("min_j vaut:");
+  //ft_putnbr(min_j);
+  //ft_putendl("");
   // If a line contain a # copy it of width chars
   j = 0;
   while (tetri[i] && ft_strchr(tetri[i], '#'))
   {
-    tab[j] = ft_strsub(tetri[i], GET_X(start), width);
+    tab[j] = ft_strsub(tetri[i], min_j, width);
     i++;
     j++;
   }
+  //ft_putendl("completion du tetriminos effectuee");
+  //ft_putendl("");
   return (tab);
 }
 
@@ -64,13 +86,22 @@ int ft_create_list_element(char **tetri, t_tetri_list **list, char id)
 
   if (tetri)
   {
+    /*if (list)
+      tmp_list = (*list);
+    else
+      tmp_list = NULL;*/
     tmp_list = (*list);
+    //ft_putendl("tmp_list init");
     while (tmp_list && tmp_list->next)
       tmp_list = tmp_list->next;
     if ((element = (t_tetri_list*)malloc(sizeof(t_tetri_list))))
     {
+      //ft_putendl("avant ft_rebuild");
   		if (!(element->tetriminos = ft_rebuild_tetri(tetri)))
         return (0);
+      //ft_putendl("apres ft_rebuild");
+      //ft_display_tab(element->tetriminos);
+      //ft_putendl("apres display");
       element->id = id;
       element->placed = 0;
       element->next = NULL;
@@ -89,6 +120,7 @@ int ft_create_list_element(char **tetri, t_tetri_list **list, char id)
 int   ft_create_list(char **tab, t_tetri_list **list)
 {
   int i;
+  int j;
   char id;
 
   if (tab)
@@ -97,9 +129,15 @@ int   ft_create_list(char **tab, t_tetri_list **list)
     id = 'A';
     while (tab[i])
     {
-      ft_create_list_element(&tab[i], list, id++);
-      i += (tab[i + 4]) ? 5 : 4;
+      //ft_putendl("entree dans while create list");
+      ft_create_list_element(&(tab[i]), list, id++);
+      //ft_putendl("element cree");
+      j = (tab[i + 4] == 0 ? 4 : 5);
+      //ft_putnbr(j);
+      //ft_putendl("");
+      i += j;
     }
+    //ft_putendl("fin du while create list");
   }
   return (0);
 }
