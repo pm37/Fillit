@@ -14,7 +14,7 @@
 
 int		ft_usage(void)
 {
-	ft_putstr("Erreur dans les tetriminos\n");
+	ft_putstr("error");
 	return (0);
 }
 
@@ -43,8 +43,12 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
+		if (read(fd, 0, 0) == -1)
+			return (ft_usage());
 		tab = ft_read_file(fd);
 		close(fd);
+		if (!tab)
+			return (ft_usage());
 		if (!ft_check_errors(tab))
 			return (ft_usage());
 		//printf("Les tetriminos sont corrects !");

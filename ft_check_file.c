@@ -56,8 +56,9 @@ char	**ft_read_file(int fd)
 		free(line);
 		i++;
 	}
-	tab[i] = NULL;
-	i = 0;
+	if (i)
+		tab[i] = NULL;
+/*	i = 0;
 	printf("--------->le tableau enregistre<----------\n");
 	while (tab[i])
 	{
@@ -66,6 +67,7 @@ char	**ft_read_file(int fd)
 		i++;
 	}
 	printf("------------------>fin<-------------------\n");
+*/
 	if (i < 131)
 	 	return (tab);
 	ft_free_tab(&tab);
