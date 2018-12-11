@@ -54,10 +54,13 @@ int		main(int argc, char **argv)
 		//printf("Les tetriminos sont corrects !");
 		ft_create_list(tab, &list);
 		sqr_size = ft_get_min_sqr_size(list);
+		//ft_putendl("taille min du carre vaut:");
+		//ft_putnbr(sqr_size);
+		//ft_putendl("");
 		ft_init_sol_tab(&tab, sqr_size);
-		while (!(ft_complete_tetris(list, tab, cursor, sqr_size)))
+		while (!(ft_complete_tetris(list, tab, cursor)))
 		{
-		//	ft_putendl("Trying with +1 size");
+			//ft_putendl("Trying with +1 size");
 			sqr_size++;
 			ft_init_sol_tab(&tab, sqr_size);
 		}

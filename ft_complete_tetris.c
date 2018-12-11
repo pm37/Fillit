@@ -142,7 +142,7 @@ int   ft_is_complete(t_tetri_list *list)
   return (0);
 }*/
 
-int   ft_complete_tetris(t_tetri_list *element, char **tab, float c, int sqr_size)
+int   ft_complete_tetris(t_tetri_list *element, char **tab, float c)
 {
   if (!element)
     return (1);
@@ -157,7 +157,7 @@ int   ft_complete_tetris(t_tetri_list *element, char **tab, float c, int sqr_siz
       ft_put_tetriminos(element, tab, c);
     //  ft_display_tab(tab);
     //  ft_putendl("");
-      if (ft_complete_tetris(element->next, tab, 0, sqr_size))
+      if (ft_complete_tetris(element->next, tab, 0))
         return (1);
     //  ft_putendl("tetriminos retire :");
       ft_unput_tetriminos(element, tab, c);
