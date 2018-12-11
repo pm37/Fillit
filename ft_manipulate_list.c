@@ -1,107 +1,92 @@
 #include "fillit.h"
 
-char **ft_rebuild_tetri(char **tetri)
+static int ft_get_tetri_height(char **tetri, float *start)
+{
+  int i;
+  int first;
+  int height;
+
+  if (tetri)
+  {
+    i = -1;
+    height = 0;
+    first = 0;
+    while (++i < 4)
+    {
+      height += (ft_strchr(tetri[i], '#')) ? 1 : 0;
+      if (height == 1 && first == 0)
+      {
+        *start += SET_Y(i);
+        first = 1;
+      }
+    }
+    return (height);
+  }
+  return (0);
+}
+
+static int ft_get_tetri_width(char **tetri, float *start)
 {
   int i;
   int j;
-  int width;
-  int height;
-  int k;
   int min_j;
-  char **tab;
+  int width;
 
-  // Determine height and start(Y) of shape and malloc first index of tab
-  i = -1;
-  height = 0;
-  while (++i < 4)
-    height += (ft_strchr(tetri[i], '#')) ? 1 : 0;
-  if (!(tab = (char**)malloc(sizeof(char*) * (height + 1))))
-    return (NULL);
-  tab[height] = NULL;
-  //ft_putendl("height calculee :");
-  //ft_putnbr(height);
-  //ft_putendl("");
-  // Determinate width and start(X) of shape
-  j = -1;
+  if (!tetri)
+    return (0);
   width = 0;
+  j = -1;
+  min_j = 3;
   while (++j < 4)
   {
     i = -1;
-    while (++i< 4)
+    while (tetri[++i] && i < 4)
     {
       if (tetri[i][j] == '#')
       {
+        min_j = (min_j > j) ? j : min_j;
         width++;
         break;
       }
     }
   }
-  //ft_putendl("width calculee :");
-  //ft_putnbr(width);
-  //ft_putendl("");
-  i = 0;
-  while (!(ft_strchr(tetri[i], '#')))
-    i++;
-  min_j = 3;
-  k = 0;
-  //ft_putendl("i et k init valent :");
-  //ft_putnbr(k);
-  //ft_putendl("");
-  //ft_putendl("debut suspect");
-  while (tetri[k + i] && (k + i) < 4)
-  {
-    j = 0;
-    while(tetri[k + i][j] == '.')
-      j++;
-    if (min_j > j)
-    {
-    //  ft_putendl("j vaut:");
-      //ft_putnbr(j);
-      //ft_putendl("");
-      min_j = j;
-    }
-    k++;
-  }
-  //ft_putendl("fin suspecte");
-  //ft_putendl("min_j vaut:");
-  //ft_putnbr(min_j);
-  //ft_putendl("");
-  // If a line contain a # copy it of width chars
-  j = 0;
-  while (tetri[i] && ft_strchr(tetri[i], '#'))
-  {
-    tab[j] = ft_strsub(tetri[i], min_j, width);
-    i++;
-    j++;
-  }
-  //ft_putendl("completion du tetriminos effectuee");
-  //ft_putendl("");
+  *start += SET_X(min_j);
+  return (width);
+}
+
+static char **ft_rebuild_tetri(char **tetri)
+{
+  int i;
+  int size;
+  float start; // [x],[y]
+  char **tab;
+
+  start = 0;
+  size = ft_get_tetri_height(tetri, &start); // height, [y]
+  if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))
+    return (NULL);
+  tab[size] = NULL;
+  size = ft_get_tetri_width(tetri, &start); // width, [x]
+  i = -1;
+  while (tetri[(GET_Y(start) + (++i))] && ft_strchr(tetri[(GET_Y(start) + i)], '#'))
+    tab[i] = ft_strsub(tetri[(GET_Y(start) + i)], GET_X(start), size);
   return (tab);
 }
 
-int ft_create_list_element(char **tetri, t_tetri_list **list, char id)
+static int ft_create_list_element(char **tetri, t_tetri_list **list, char id)
 {
   t_tetri_list *element;
   t_tetri_list *tmp_list;
 
   if (tetri)
   {
-    /*if (list)
-      tmp_list = (*list);
-    else
-      tmp_list = NULL;*/
     tmp_list = (*list);
-    //ft_putendl("tmp_list init");
     while (tmp_list && tmp_list->next)
       tmp_list = tmp_list->next;
     if ((element = (t_tetri_list*)malloc(sizeof(t_tetri_list))))
     {
-      //ft_putendl("avant ft_rebuild");
   		if (!(element->tetriminos = ft_rebuild_tetri(tetri)))
         return (0);
-      //ft_putendl("apres ft_rebuild");
-      //ft_display_tab(element->tetriminos);
-      //ft_putendl("apres display");
       element->id = id;
       element->placed = 0;
       element->next = NULL;
@@ -116,11 +101,9 @@ int ft_create_list_element(char **tetri, t_tetri_list **list, char id)
   return (1);
 }
 
-
 int   ft_create_list(char **tab, t_tetri_list **list)
 {
   int i;
-  int j;
   char id;
 
   if (tab)
@@ -129,15 +112,9 @@ int   ft_create_list(char **tab, t_tetri_list **list)
     id = 'A';
     while (tab[i])
     {
-      //ft_putendl("entree dans while create list");
-      ft_create_list_element(&(tab[i]), list, id++);
-      //ft_putendl("element cree");
-      j = (tab[i + 4] == 0 ? 4 : 5);
-      //ft_putnbr(j);
-      //ft_putendl("");
-      i += j;
+      ft_create_list_element(&tab[i], list, id++);
+      i += (tab[i + 4] == 0) ? 4 : 5;
     }
-    //ft_putendl("fin du while create list");
   }
-  return (0);
+  return (1);
 }
