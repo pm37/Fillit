@@ -148,17 +148,24 @@ int   ft_complete_tetris(t_tetri_list *element, char **tab, float c, int sqr_siz
     return (1);
   if (c == -1)
     return (0);
-  if (!ft_check_place(element, tab, c))
-    return (ft_complete_tetris(element, tab, ft_get_next_coor(tab, GET_X(c), GET_Y(c)), sqr_size));
-  ft_put_tetriminos(element, tab, c);
-  //ft_display_tab(tab);
-  //ft_putendl("");
-  if (ft_complete_tetris(element->next, tab, 0, sqr_size))
+  //ft_check_place(element, tab, c)
+  while (c != -1)
   {
-    //ft_putendl("IT SEEMS IT WORKS");
-    return (1);
+    if (ft_check_place(element, tab, c))
+    {
+    //  ft_putendl("tetriminos pose :");
+      ft_put_tetriminos(element, tab, c);
+    //  ft_display_tab(tab);
+    //  ft_putendl("");
+      if (ft_complete_tetris(element->next, tab, 0, sqr_size))
+        return (1);
+    //  ft_putendl("tetriminos retire :");
+      ft_unput_tetriminos(element, tab, c);
+    //  ft_display_tab(tab);
+    //  ft_putendl("");
+    }
+    c = ft_get_next_coor(tab, GET_X(c), GET_Y(c));
   }
-  ft_unput_tetriminos(element, tab, c);
   //ft_putendl("DOES NOT WORK");
   return (0);
 }
