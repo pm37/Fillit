@@ -88,7 +88,6 @@ static int ft_create_list_element(char **tetri, t_tetri_list **list, char id)
   		if (!(element->tetriminos = ft_rebuild_tetri(tetri)))
         return (0);
       element->id = id;
-      element->placed = 0;
       element->next = NULL;
     }
     else

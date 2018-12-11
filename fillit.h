@@ -31,7 +31,6 @@ typedef struct		s_tetri_list
 {
 	char			**tetriminos;
   char      id;
-	int 			placed;
 	float 		dimension;
 	struct s_tetri_list	*next;
 }					t_tetri_list;
