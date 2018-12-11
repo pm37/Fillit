@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int   *ft_check_place(t_tetri_list *element, char **tab, float c)
+int   ft_check_place(t_tetri_list *element, char **tab, float c)
 {
   int           is_ok;
   int           i;

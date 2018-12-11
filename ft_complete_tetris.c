@@ -81,7 +81,6 @@ void  ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
   }
 //  printf("%p\n", element->tetriminos[i]);
 //  ft_putendl("END PUT TETRI");
-  element->placed = 1;
 }
 
 void  ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
@@ -101,10 +100,9 @@ void  ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
     }
     i++;
   }
-  element->placed = 0;
 }
 
-float ft_get_next_free_coor(char **tab, int x, int y)
+float ft_get_next_coor(char **tab, int x, int y)
 {
   int i;
   int j;
@@ -134,7 +132,7 @@ float ft_get_next_free_coor(char **tab, int x, int y)
   return (-1);
 }
 
-
+/* fonction inutile ?
 int   ft_is_complete(t_tetri_list *list)
 {
   while(list && (list->placed))
@@ -142,30 +140,25 @@ int   ft_is_complete(t_tetri_list *list)
   if (!list)
     return (1);
   return (0);
-}
+}*/
 
-int   ft_complete_tetris(t_tetri_list **list, char **tab, float c, int sqr_size)
+int   ft_complete_tetris(t_tetri_list *element, char **tab, float c, int sqr_size)
 {
-  t_tetri_list  *element;
-
-  if (ft_is_complete(*list))
+  if (!element)
     return (1);
-  if (!(element = ft_check_place(list, tab, c)) && c != -1)
-    return (ft_complete_tetris(list, tab, ft_get_next_free_coor(tab, GET_X(c), GET_Y(c)), sqr_size));
-  while (element)
+  if (c == -1)
+    return (0);
+  if (!ft_check_place(element, tab, c))
+    return (ft_complete_tetris(element, tab, ft_get_next_coor(tab, GET_X(c), GET_Y(c)), sqr_size));
+  ft_put_tetriminos(element, tab, c);
+  //ft_display_tab(tab);
+  //ft_putendl("");
+  if (ft_complete_tetris(element->next, tab, 0, sqr_size))
   {
-    ft_put_tetriminos(element, tab, c);
-  //  ft_display_tab(tab);
-    //ft_putendl("");
-    if (ft_complete_tetris(list, tab, ft_get_next_free_coor(tab, GET_X(c), GET_Y(c)), sqr_size))
-    {
-      //ft_putendl("IT SEEMS IT WORKS");
-      return (1);
-    }
-
-    ft_unput_tetriminos(element, tab, c);
-    element = ft_check_place(&(element)->next, tab, c);
+    //ft_putendl("IT SEEMS IT WORKS");
+    return (1);
   }
+  ft_unput_tetriminos(element, tab, c);
   //ft_putendl("DOES NOT WORK");
   return (0);
 }

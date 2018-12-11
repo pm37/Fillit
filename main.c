@@ -55,7 +55,7 @@ int		main(int argc, char **argv)
 		ft_create_list(tab, &list);
 		sqr_size = ft_get_min_sqr_size(list);
 		ft_init_sol_tab(&tab, sqr_size);
-		while (!(ft_complete_tetris(&list, tab, cursor, sqr_size)))
+		while (!(ft_complete_tetris(list, tab, cursor, sqr_size)))
 		{
 		//	ft_putendl("Trying with +1 size");
 			sqr_size++;

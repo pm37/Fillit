@@ -42,11 +42,11 @@ int		ft_create_list(char **tab, t_tetri_list **list);
 void ft_free_tab(char ***tab);
 int   ft_get_min_sqr_size(t_tetri_list *list);
 void  ft_init_sol_tab(char ***tab, int sqr_size);
-int   *ft_check_place(t_tetri_list *element, char **tab, float c);
+int   ft_check_place(t_tetri_list *element, char **tab, float c);
 void		ft_display_tab(char **tab);
-int   ft_complete_tetris(t_tetri_list **list, char **tab, float c, int sqr_size);
+int   ft_complete_tetris(t_tetri_list *list, char **tab, float c, int sqr_size);
 void  ft_put_tetriminos(t_tetri_list *element, char **tab, float c);
-float ft_get_next_free_coor(char **tab, int x, int y);
+float ft_get_next_coor(char **tab, int x, int y);
 void		ft_display_tab(char **tab);
 
 #endif
