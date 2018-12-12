@@ -16,11 +16,9 @@ void  ft_init_sol_tab(char ***tab, int sqr_size)
 {
   int i;
   int j;
-  //free memory
+
   ft_free_tab(tab);
-  //allocate memory
   *tab = (char **)malloc(sizeof(**tab) * (sqr_size + 1));
-  //complete tab with '.'
   i = 0;
   while (i < sqr_size)
   {
@@ -66,21 +64,15 @@ void  ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
   int j;
 
   i = -1;
-//  ft_putendl("PUT TETRI");
   while (element->tetriminos[++i])
   {
-    //ft_putchar(element->id);
-  //  printf("%p\n", element->tetriminos[i]);
     j = -1;
     while (element->tetriminos[i][++j])
     {
       if (element->tetriminos[i][j] == '#')
         tab[GET_Y(c) + i][GET_X(c) + j] = element->id;
     }
-    //ft_putendl("iterate put_tetri");
   }
-//  printf("%p\n", element->tetriminos[i]);
-//  ft_putendl("END PUT TETRI");
 }
 
 void  ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
@@ -116,15 +108,7 @@ float ft_get_next_coor(char **tab, int x, int y)
     while (tab[j][i])
     {
       if (tab[j][i])
-      {
-        /*ft_putstr("Y = ");
-        ft_putnbr(j);
-        ft_putstr(" - ");
-        ft_putstr("X = ");
-        ft_putnbr(i);
-        ft_putendl("");*/
         return (SET_X(i) + SET_Y(j));
-      }
       i++;
     }
     j++;
@@ -132,40 +116,20 @@ float ft_get_next_coor(char **tab, int x, int y)
   return (-1);
 }
 
-/* fonction inutile ?
-int   ft_is_complete(t_tetri_list *list)
-{
-  while(list && (list->placed))
-    list = list->next;
-  if (!list)
-    return (1);
-  return (0);
-}*/
-
 int   ft_complete_tetris(t_tetri_list *element, char **tab, float c)
 {
   if (!element)
     return (1);
-  if (c == -1)
-    return (0);
-  //ft_check_place(element, tab, c)
   while (c != -1)
   {
     if (ft_check_place(element, tab, c))
     {
-    //  ft_putendl("tetriminos pose :");
       ft_put_tetriminos(element, tab, c);
-    //  ft_display_tab(tab);
-    //  ft_putendl("");
       if (ft_complete_tetris(element->next, tab, 0))
         return (1);
-    //  ft_putendl("tetriminos retire :");
       ft_unput_tetriminos(element, tab, c);
-    //  ft_display_tab(tab);
-    //  ft_putendl("");
     }
     c = ft_get_next_coor(tab, GET_X(c), GET_Y(c));
   }
-  //ft_putendl("DOES NOT WORK");
   return (0);
 }

@@ -27,6 +27,20 @@ void		ft_display_tab(char **tab)
 	}
 }
 
+void		ft_free_list(t_tetri_list **list)
+{
+	t_tetri_list	*temp;
+
+	while (*list)
+	{
+		temp = (*list)->next;
+		ft_free_tab(&(*list)->tetriminos);
+		free(*list);
+		*list = temp;
+	}
+	free(*list);
+	*list = NULL;
+}
 
 int		main(int argc, char **argv)
 {
@@ -50,23 +64,21 @@ int		main(int argc, char **argv)
 		if (!tab)
 			return (ft_usage());
 		if (!ft_check_errors(tab))
+		{
+			ft_free_tab(&tab);
 			return (ft_usage());
-		//printf("Les tetriminos sont corrects !");
+		}
 		ft_create_list(tab, &list);
 		sqr_size = ft_get_min_sqr_size(list);
-		//ft_putendl("taille min du carre vaut:");
-		//ft_putnbr(sqr_size);
-		//ft_putendl("");
 		ft_init_sol_tab(&tab, sqr_size);
 		while (!(ft_complete_tetris(list, tab, cursor)))
 		{
-			//ft_putendl("Trying with +1 size");
 			sqr_size++;
 			ft_init_sol_tab(&tab, sqr_size);
 		}
-	//	ft_complete_tetris(&list, tab, cursor, sqr_size);
 		ft_display_tab(tab);
 		ft_free_tab(&tab);
+		ft_free_list(&list);
 	}
 	return (0);
 }

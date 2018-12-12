@@ -17,15 +17,12 @@
 # define GET_X(f) (int)(f)
 # define GET_Y(f) (int)((f * 10) - ((int)f * 10))
 
-# include <stdio.h>
-
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 # include "libft/libft.h"
-
 
 typedef struct		s_tetri_list
 {

@@ -58,15 +58,15 @@ static char **ft_rebuild_tetri(char **tetri)
 {
   int i;
   int size;
-  float start; // [x],[y]
+  float start;
   char **tab;
 
   start = 0;
-  size = ft_get_tetri_height(tetri, &start); // height, [y]
+  size = ft_get_tetri_height(tetri, &start);
   if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))
     return (NULL);
   tab[size] = NULL;
-  size = ft_get_tetri_width(tetri, &start); // width, [x]
+  size = ft_get_tetri_width(tetri, &start);
   i = -1;
   while (tetri[(GET_Y(start) + (++i))] && ft_strchr(tetri[(GET_Y(start) + i)], '#'))
     tab[i] = ft_strsub(tetri[(GET_Y(start) + i)], GET_X(start), size);
