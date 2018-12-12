@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:40:40 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/04 12:11:59 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/12 17:47:45 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,32 @@
 # include <string.h>
 # include "libft/libft.h"
 
-typedef struct		s_tetri_list
+typedef struct			s_tetri_list
 {
-	char			**tetriminos;
-  char      id;
-	float 		dimension;
+	char				**tetriminos;
+	char				id;
+	float				dimension;
 	struct s_tetri_list	*next;
-}					t_tetri_list;
+}						t_tetri_list;
 
-char	**ft_read_file(int fd);
-int		ft_check_errors(char **tab);
-int		ft_check_errors_2(char **tab, int i, int *sharp, int *sides);
-int		ft_create_list(char **tab, t_tetri_list **list);
-void ft_free_tab(char ***tab);
-int   ft_get_min_sqr_size(t_tetri_list *list);
-void  ft_init_sol_tab(char ***tab, int sqr_size);
-int   ft_check_place(t_tetri_list *element, char **tab, float c);
-void		ft_display_tab(char **tab);
-int   ft_complete_tetris(t_tetri_list *list, char **tab, float c);
-void  ft_put_tetriminos(t_tetri_list *element, char **tab, float c);
-float ft_get_next_coor(char **tab, int x, int y);
-void		ft_display_tab(char **tab);
+char					**ft_read_file(int fd, int i, int j, char **tab);
+int						ft_check_errors(char **tab, int i, int sharp,
+						int sides);
+int						ft_check_errors_2(char **tab, int i, int *sharp,
+						int *sides);
+int						ft_create_list(char **tab, t_tetri_list **list);
+void					ft_free_tab(char ***tab);
+int						ft_get_min_sqr_size(t_tetri_list *list);
+void					ft_init_sol_tab(char ***tab, int sqr_size);
+int						ft_check_place(t_tetri_list *element, char **tab,
+						int x, int y);
+void					ft_display_tab(char **tab);
+int						ft_complete_tetris(t_tetri_list *list, char **tab,
+						float c);
+void					ft_put_tetriminos(t_tetri_list *element, char **tab,
+						float c);
+float					ft_get_next_coor(char **tab, int x, int y);
+void					ft_display_tab(char **tab);
+void					ft_free_list(t_tetri_list **list);
 
 #endif
