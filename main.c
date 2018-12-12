@@ -18,18 +18,32 @@ int		ft_usage(void)
 	return (0);
 }
 
+void ft_solve_tetris(char ***tab)
+{
+	int						sqr_size;
+	t_tetri_list	*list;
+
+	list = NULL;
+	ft_create_list(*tab, &list);
+	sqr_size = ft_get_min_sqr_size(list);
+	ft_init_sol_tab(&(*tab), sqr_size);
+	while (!(ft_complete_tetris(list, *tab, 0)))
+	{
+		sqr_size++;
+		ft_init_sol_tab(&(*tab), sqr_size);
+	}
+	ft_display_tab(*tab);
+	ft_free_list(&list);
+	ft_free_tab(&(*tab));
+}
+
 int		main(int argc, char **argv)
 {
 	int				fd;
-	int				sqr_size;
 	char			**tab;
-	t_tetri_list	*list;
-	float			cursor;
 
 	fd = 0;
 	tab = NULL;
-	list = NULL;
-	cursor = 0;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
@@ -44,17 +58,7 @@ int		main(int argc, char **argv)
 			ft_free_tab(&tab);
 			return (ft_usage());
 		}
-		ft_create_list(tab, &list);
-		sqr_size = ft_get_min_sqr_size(list);
-		ft_init_sol_tab(&tab, sqr_size);
-		while (!(ft_complete_tetris(list, tab, cursor)))
-		{
-			sqr_size++;
-			ft_init_sol_tab(&tab, sqr_size);
-		}
-		ft_display_tab(tab);
-		ft_free_tab(&tab);
-		ft_free_list(&list);
+		ft_solve_tetris(&tab);
 	}
 	return (0);
 }
