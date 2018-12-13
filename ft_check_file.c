@@ -34,13 +34,16 @@ char		**ft_read_file(int fd, int i, int j, char **tab)
 	char	*line;
 	char	**temp;
 
-	while (ft_get_next_line(fd, &line) && i < 130)
+	while (ft_get_next_line(fd, &line) && i < 131)
 	{
 		j = -1;
-		temp = (char **)malloc(sizeof(*tab) * (i + 2));
+		if (!(temp = (char **)malloc(sizeof(*tab) * (i + 2))))
+			return (NULL);
 		while (++j < i)
-			temp[j] = ft_strdup(tab[j]);
-		temp[i] = ft_strdup(line);
+			if (!(temp[j] = ft_strdup(tab[j])))
+				return (NULL);
+		if (!(temp[i] = ft_strdup(line)))
+			return (NULL);
 		temp[i + 1] = NULL;
 		if (tab)
 			ft_free_tab(&tab);
@@ -48,13 +51,9 @@ char		**ft_read_file(int fd, int i, int j, char **tab)
 		free(line);
 		i++;
 	}
-	if (i)
-		tab[i] = NULL;
-	i = 0;
-	if (i < 130)
-		return (tab);
-	ft_free_tab(&tab);
-	return (NULL);
+	if (i == 130)
+		ft_free_tab(&tab);
+	return ((i == 130) ? NULL : tab);
 }
 
 static int	ft_check_errors_2(char **tab, int i, int *sharp, int *sides)

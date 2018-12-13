@@ -47,7 +47,7 @@ int			main(int argc, char **argv)
 	{
 		if ((fd = open(argv[1], O_RDONLY)) != -1)
 		{
-			tab = ft_read_file(fd, 0, 0, NULL);
+			tab = ft_read_file(fd, 0, -1, NULL);
 			if (!tab)
 				return (ft_usage());
 			if (!ft_check_errors(tab, -1, 0, 0))
