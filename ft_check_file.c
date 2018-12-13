@@ -6,13 +6,13 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:15:43 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/12 17:30:20 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:46:44 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_free_tab(char ***tab)
+void		ft_free_tab(char ***tab)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ void	ft_free_tab(char ***tab)
 	*tab = NULL;
 }
 
-char	**ft_read_file(int fd, int i, int j, char **tab)
+char		**ft_read_file(int fd, int i, int j, char **tab)
 {
 	char	*line;
 	char	**temp;
@@ -86,7 +86,7 @@ static int	ft_check_errors_2(char **tab, int i, int *sharp, int *sides)
 	return (1);
 }
 
-int	ft_check_errors(char **tab, int i, int s, int sides)
+int			ft_check_errors(char **tab, int i, int s, int sides)
 {
 	while (tab[++i])
 	{

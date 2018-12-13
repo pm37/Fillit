@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 16:29:20 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/12 17:03:24 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:42:46 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 static int	ft_on_line(t_tetri_list *element, char **tab, float c, int i)
 {
-	int	j;
+	int		j;
 	size_t	length;
 
 	length = ft_strlen(element->tetri[i]);
 	j = -1;
 	while (tab[GET_Y(c) + i] && (size_t)(++j) < length)
 	{
-		if (!(tab[GET_Y(c) + i][GET_X(c) + j]) ||
-			(tab[GET_Y(c) + i][GET_X(c) + j] != '.' && element->tetri[i][j] != '.'))
+		if (!(tab[GET_Y(c) + i][GET_X(c) + j]) || (tab[GET_Y(c) + i]
+		[GET_X(c) + j] != '.' && element->tetri[i][j] != '.'))
 			return (0);
 	}
 	return (1);
 }
 
-
-int		ft_check_place(t_tetri_list *elem, char **tab, float c)
+int			ft_check_place(t_tetri_list *elem, char **tab, float c)
 {
 	int	is_ok;
 	int	i;

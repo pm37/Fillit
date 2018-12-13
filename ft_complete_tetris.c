@@ -6,13 +6,13 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:31:07 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/12 17:49:01 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:43:33 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
+static void		ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
 {
 	int i;
 	int j;
@@ -29,7 +29,7 @@ static void	ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
 	}
 }
 
-static void	ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
+static void		ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
 {
 	int i;
 	int j;
@@ -70,7 +70,7 @@ static float	ft_get_next_coor(char **tab, int x, int y)
 	return (-1);
 }
 
-int		ft_complete_tetris(t_tetri_list *element, char **tab, float c)
+int				ft_complete_tetris(t_tetri_list *element, char **tab, float c)
 {
 	if (!element)
 		return (1);

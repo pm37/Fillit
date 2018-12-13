@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:35:05 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/12 18:07:06 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:44:54 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_usage(void)
 
 static void	ft_solve_tetris(char ***tab)
 {
-	int		sqr_size;
+	int				sqr_size;
 	t_tetri_list	*list;
 
 	list = NULL;
@@ -37,9 +37,9 @@ static void	ft_solve_tetris(char ***tab)
 	ft_free_tab(&(*tab));
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	int	fd;
+	int		fd;
 	char	**tab;
 
 	tab = NULL;
