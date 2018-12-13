@@ -12,17 +12,19 @@
 
 #include "fillit.h"
 
-void	ft_init_sol_tab(char ***tab, int sqr_size)
+int		ft_init_sol_tab(char ***tab, int sqr_size)
 {
 	int	i;
 	int	j;
 
 	ft_free_tab(tab);
-	*tab = (char **)malloc(sizeof(**tab) * (sqr_size + 1));
+	if (!(*tab = (char **)malloc(sizeof(**tab) * (sqr_size + 1))))
+		return (0);
 	i = 0;
 	while (i < sqr_size)
 	{
-		tab[0][i] = (char *)malloc(sizeof(char) * (sqr_size + 1));
+		if (!(tab[0][i] = (char *)malloc(sizeof(char) * (sqr_size + 1))))
+			return (0);
 		j = 0;
 		while (j < sqr_size)
 		{
@@ -33,6 +35,7 @@ void	ft_init_sol_tab(char ***tab, int sqr_size)
 		i++;
 	}
 	tab[0][i] = NULL;
+	return (1);
 }
 
 int		ft_get_min_sqr_size(t_tetri_list *list)

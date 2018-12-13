@@ -12,9 +12,15 @@
 
 #include "fillit.h"
 
-static int	ft_usage(void)
+static int	ft_error(void)
 {
 	ft_putstr("error");
+	return (0);
+}
+
+static int	ft_usage(void)
+{
+	ft_putendl("usage: ./fillit source_file");
 	return (0);
 }
 
@@ -47,18 +53,21 @@ int			main(int argc, char **argv)
 	{
 		if ((fd = open(argv[1], O_RDONLY)) != -1)
 		{
-			tab = ft_read_file(fd, 0, -1, NULL);
+			tab = ft_read_file(fd, 0, 0, NULL);
 			if (!tab)
-				return (ft_usage());
+				return (ft_error());
 			if (!ft_check_errors(tab, -1, 0, 0))
 			{
 				ft_free_tab(&tab);
-				return (ft_usage());
+				return (ft_error());
 			}
+			if (close(fd) == -1)
+				return (0);
 			ft_solve_tetris(&tab);
 		}
-		if (close(fd) == -1)
-			return (ft_usage());
+		else
+			return(ft_error());
+		return (0);
 	}
-	return (0);
+	return (ft_usage());
 }

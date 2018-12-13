@@ -38,7 +38,7 @@ int						ft_check_errors(char **tab, int i, int sharp,
 int						ft_create_list(char **tab, t_tetri_list **list);
 void					ft_free_tab(char ***tab);
 int						ft_get_min_sqr_size(t_tetri_list *list);
-void					ft_init_sol_tab(char ***tab, int sqr_size);
+int						ft_init_sol_tab(char ***tab, int sqr_size);
 int						ft_check_place(t_tetri_list *elem, char **tab,
 						float c);
 int						ft_complete_tetris(t_tetri_list *list, char **tab,
