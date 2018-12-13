@@ -12,35 +12,35 @@
 
 #include "fillit.h"
 
-void	ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
+static void	ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
 {
 	int i;
 	int j;
 
 	i = -1;
-	while (element->tetriminos[++i])
+	while (element->tetri[++i])
 	{
 		j = -1;
-		while (element->tetriminos[i][++j])
+		while (element->tetri[i][++j])
 		{
-			if (element->tetriminos[i][j] == '#')
+			if (element->tetri[i][j] == '#')
 				tab[GET_Y(c) + i][GET_X(c) + j] = element->id;
 		}
 	}
 }
 
-void	ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
+static void	ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (element->tetriminos[i])
+	while (element->tetri[i])
 	{
 		j = 0;
-		while (element->tetriminos[i][j])
+		while (element->tetri[i][j])
 		{
-			if (element->tetriminos[i][j] == '#')
+			if (element->tetri[i][j] == '#')
 				tab[GET_Y(c) + i][GET_X(c) + j] = '.';
 			j++;
 		}
@@ -48,7 +48,7 @@ void	ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
 	}
 }
 
-float	ft_get_next_coor(char **tab, int x, int y)
+static float	ft_get_next_coor(char **tab, int x, int y)
 {
 	int i;
 	int j;
@@ -76,7 +76,7 @@ int		ft_complete_tetris(t_tetri_list *element, char **tab, float c)
 		return (1);
 	while (c != -1)
 	{
-		if (ft_check_place(element, tab, GET_X(c), GET_Y(c)))
+		if (ft_check_place(element, tab, c))
 		{
 			ft_put_tetriminos(element, tab, c);
 			if (ft_complete_tetris(element->next, tab, 0))

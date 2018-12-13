@@ -12,15 +12,15 @@
 
 #include "fillit.h"
 
-int		ft_usage(void)
+static int	ft_usage(void)
 {
 	ft_putstr("error");
 	return (0);
 }
 
-void ft_solve_tetris(char ***tab)
+static void	ft_solve_tetris(char ***tab)
 {
-	int						sqr_size;
+	int		sqr_size;
 	t_tetri_list	*list;
 
 	list = NULL;
@@ -39,26 +39,26 @@ void ft_solve_tetris(char ***tab)
 
 int		main(int argc, char **argv)
 {
-	int				fd;
-	char			**tab;
+	int	fd;
+	char	**tab;
 
-	fd = 0;
 	tab = NULL;
 	if (argc == 2)
 	{
-		fd = open(argv[1], O_RDONLY);
-		if (read(fd, 0, 0) == -1)
-			return (ft_usage());
-		tab = ft_read_file(fd, 0, 0, NULL);
-		close(fd);
-		if (!tab)
-			return (ft_usage());
-		if (!ft_check_errors(tab, -1, 0, 0))
+		if ((fd = open(argv[1], O_RDONLY)) != -1)
 		{
-			ft_free_tab(&tab);
-			return (ft_usage());
+			tab = ft_read_file(fd, 0, 0, NULL);
+			if (!tab)
+				return (ft_usage());
+			if (!ft_check_errors(tab, -1, 0, 0))
+			{
+				ft_free_tab(&tab);
+				return (ft_usage());
+			}
+			ft_solve_tetris(&tab);
 		}
-		ft_solve_tetris(&tab);
+		if (close(fd) == -1)
+			return (ft_usage());
 	}
 	return (0);
 }

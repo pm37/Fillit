@@ -12,35 +12,41 @@
 
 #include "fillit.h"
 
-int		ft_check_place(t_tetri_list *ele, char **tab, int x, int y)
+static int	ft_on_line(t_tetri_list *element, char **tab, float c, int i)
+{
+	int	j;
+	size_t	length;
+
+	length = ft_strlen(element->tetri[i]);
+	j = -1;
+	while (tab[GET_Y(c) + i] && (size_t)(++j) < length)
+	{
+		if (!(tab[GET_Y(c) + i][GET_X(c) + j]) ||
+			(tab[GET_Y(c) + i][GET_X(c) + j] != '.' && element->tetri[i][j] != '.'))
+			return (0);
+	}
+	return (1);
+}
+
+
+int		ft_check_place(t_tetri_list *elem, char **tab, float c)
 {
 	int	is_ok;
 	int	i;
-	int	j;
 
-	if (ele && tab)
+	if (elem && tab)
 	{
 		is_ok = 1;
 		i = -1;
-		while (ele->tetriminos[++i])
+		while (elem->tetri[++i])
 		{
-			j = -1;
-			while (tab[y + i] && (size_t)(++j) < ft_strlen(ele->tetriminos[i]))
-			{
-				if (!(tab[y + i][x + j]) || (tab[y + i][x + j] != '.' && ele->tetriminos[i][j] != '.'))
-				{
-					is_ok = 0;
-					break ;
-				}
-			}
-			if (is_ok == 0 || !tab[y + i])
+			if ((ft_on_line(elem, tab, c, i)) == 0 || !tab[GET_Y(c) + i])
 			{
 				is_ok = 0;
 				break ;
 			}
 		}
-		if (is_ok == 1 && tab[y + i - 1])
-			return (1);
+		return ((is_ok == 1 && tab[GET_Y(c) + i - 1]) ? 1 : 0);
 	}
 	return (0);
 }

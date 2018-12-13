@@ -57,34 +57,7 @@ char	**ft_read_file(int fd, int i, int j, char **tab)
 	return (NULL);
 }
 
-int		ft_check_errors(char **tab, int i, int s, int sides)
-{
-	while (tab[++i])
-	{
-		if (i > 128 || (((i + 1) % 5 != 0) && ft_strlen(tab[i]) != 4) || s > 4)
-			return (0);
-		if (((i + 1) % 5 == 0) && (ft_strlen(tab[i]) != 0))
-			return (0);
-		if ((i + 1) % 5 == 0)
-		{
-			if (s != 4 || sides < 6)
-				return (0);
-			s = 0;
-			sides = 0;
-		}
-		if ((i + 1) % 5 != 0)
-			if (!ft_check_errors_2(tab, i, &s, &sides))
-				return (0);
-		if (tab[i + 1] == 0)
-			if (s != 4 || sides < 6)
-				return (0);
-	}
-	if (((i - 4) % 5) != 0 || i < 4)
-		return (0);
-	return (1);
-}
-
-int		ft_check_errors_2(char **tab, int i, int *sharp, int *sides)
+static int	ft_check_errors_2(char **tab, int i, int *sharp, int *sides)
 {
 	int j_ck[2];
 
@@ -110,5 +83,32 @@ int		ft_check_errors_2(char **tab, int i, int *sharp, int *sides)
 		}
 	}
 	*sides = *sides + j_ck[1];
+	return (1);
+}
+
+int	ft_check_errors(char **tab, int i, int s, int sides)
+{
+	while (tab[++i])
+	{
+		if (i > 128 || (((i + 1) % 5 != 0) && ft_strlen(tab[i]) != 4) || s > 4)
+			return (0);
+		if (((i + 1) % 5 == 0) && (ft_strlen(tab[i]) != 0))
+			return (0);
+		if ((i + 1) % 5 == 0)
+		{
+			if (s != 4 || sides < 6)
+				return (0);
+			s = 0;
+			sides = 0;
+		}
+		if ((i + 1) % 5 != 0)
+			if (!ft_check_errors_2(tab, i, &s, &sides))
+				return (0);
+		if (tab[i + 1] == 0)
+			if (s != 4 || sides < 6)
+				return (0);
+	}
+	if (((i - 4) % 5) != 0 || i < 4)
+		return (0);
 	return (1);
 }

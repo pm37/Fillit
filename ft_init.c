@@ -74,7 +74,7 @@ void	ft_free_list(t_tetri_list **list)
 	while (*list)
 	{
 		temp = (*list)->next;
-		ft_free_tab(&(*list)->tetriminos);
+		ft_free_tab(&(*list)->tetri);
 		free(*list);
 		*list = temp;
 	}

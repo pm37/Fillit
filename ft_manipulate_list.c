@@ -98,7 +98,7 @@ static int	ft_create_list_element(char **tetri, t_tetri_list **list, char id)
 			tmp_list = tmp_list->next;
 		if ((element = (t_tetri_list*)malloc(sizeof(t_tetri_list))))
 		{
-			if (!(element->tetriminos = ft_rebuild_tetri(tetri)))
+			if (!(element->tetri = ft_rebuild_tetri(tetri)))
 				return (0);
 			element->id = id;
 			element->next = NULL;
