@@ -62,7 +62,7 @@ int			main(int argc, char **argv)
 				return (ft_error());
 			}
 			if (close(fd) == -1)
-				return (0);
+				return (ft_error());
 			ft_solve_tetris(&tab);
 		}
 		else
