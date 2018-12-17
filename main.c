@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:35:05 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/13 12:44:54 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/17 13:55:28 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			main(int argc, char **argv)
 			ft_solve_tetris(&tab);
 		}
 		else
-			return(ft_error());
+			return (ft_error());
 		return (0);
 	}
 	return (ft_usage());
