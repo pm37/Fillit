@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:15:43 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/13 12:46:44 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/17 16:00:34 by qvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ char		**ft_read_file(int fd, int i, int j, char **tab)
 	char	*line;
 	char	**temp;
 
-	while (ft_get_next_line(fd, &line) && i < 131)
+	line = NULL;
+	while (ft_get_next_line(fd, &line) && i < 131 && line != NULL)
 	{
 		j = -1;
 		if (!(temp = (char **)malloc(sizeof(*tab) * (i + 2))))
