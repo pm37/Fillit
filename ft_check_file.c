@@ -39,12 +39,12 @@ char		**ft_read_file(int fd, int i, int j, char **tab)
 	{
 		j = -1;
 		if (!(temp = (char **)malloc(sizeof(*tab) * (i + 2))))
-			return (NULL);
+			exit(EXIT_SUCCESS);
 		while (++j < i)
 			if (!(temp[j] = ft_strdup(tab[j])))
-				return (NULL);
+				exit(EXIT_SUCCESS);
 		if (!(temp[i] = ft_strdup(line)))
-			return (NULL);
+			exit(EXIT_SUCCESS);
 		temp[i + 1] = NULL;
 		if (tab)
 			ft_free_tab(&tab);

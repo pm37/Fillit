@@ -19,12 +19,12 @@ int		ft_init_sol_tab(char ***tab, int sqr_size)
 
 	ft_free_tab(tab);
 	if (!(*tab = (char **)malloc(sizeof(**tab) * (sqr_size + 1))))
-		return (0);
+		exit(EXIT_SUCCESS);
 	i = 0;
 	while (i < sqr_size)
 	{
 		if (!(tab[0][i] = (char *)malloc(sizeof(char) * (sqr_size + 1))))
-			return (0);
+			exit(EXIT_SUCCESS);
 		j = 0;
 		while (j < sqr_size)
 		{

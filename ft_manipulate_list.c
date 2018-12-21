@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 17:51:15 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/12 17:53:59 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/21 10:46:26 by qvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,20 @@ static char	**ft_rebuild_tetri(char **tetri)
 {
 	int		i;
 	int		size;
-	float	start;
+	float	strt;
 	char	**tab;
 
-	start = 0;
-	size = ft_get_tetri_height(tetri, &start);
+	strt = 0;
+	size = ft_get_tetri_height(tetri, &strt);
 	if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))
-		return (NULL);
+		exit(EXIT_SUCCESS);
 	tab[size] = NULL;
-	size = ft_get_tetri_width(tetri, &start);
+	size = ft_get_tetri_width(tetri, &strt);
 	i = -1;
-	while (tetri[(GET_Y(start) + (++i))] && ft_strchr(tetri[(GET_Y(start) + i)],
+	while (tetri[(GET_Y(strt) + (++i))] && ft_strchr(tetri[(GET_Y(strt) + i)],
 	'#'))
-		tab[i] = ft_strsub(tetri[(GET_Y(start) + i)], GET_X(start), size);
+		if (!(tab[i] = ft_strsub(tetri[(GET_Y(strt) + i)], GET_X(strt), size)))
+			exit(EXIT_SUCCESS);
 	return (tab);
 }
 
@@ -104,7 +105,7 @@ static int	ft_create_list_element(char **tetri, t_tetri_list **list, char id)
 			element->next = NULL;
 		}
 		else
-			return (0);
+			exit(EXIT_SUCCESS);
 		if (tmp_list)
 			tmp_list->next = element;
 		else
