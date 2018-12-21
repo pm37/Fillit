@@ -6,13 +6,18 @@
 #    By: pimichau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 13:12:08 by pimichau          #+#    #+#              #
-#    Updated: 2018/12/11 14:41:03 by pimichau         ###   ########.fr        #
+#    Updated: 2018/12/21 10:21:47 by pimichau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRC = $(wildcard *.c)
+SRC = 	ft_check_file.c 		\
+		ft_check_place.c 		\
+		ft_complete_tetris.c	\
+		ft_init.c				\
+		ft_manipulate_list.c	\
+		main.c
 
 OBJS = $(SRC:.c=.o)
 

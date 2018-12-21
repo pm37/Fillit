@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:40:40 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/13 12:49:45 by pimichau         ###   ########.fr       */
+/*   Updated: 2018/12/21 10:31:05 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # define GET_X(f) (int)(f)
 # define GET_Y(f) (int)((f * 10) - ((int)f * 10))
 
-# include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
