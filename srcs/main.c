@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 10:14:58 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/21 10:15:05 by pimichau         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:21:37 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_error(void)
 {
-	ft_putstr("error");
+	ft_putendl("error");
 	return (0);
 }
 
@@ -51,22 +51,19 @@ int			main(int argc, char **argv)
 	tab = NULL;
 	if (argc == 2)
 	{
-		if ((fd = open(argv[1], O_RDONLY)) != -1)
-		{
-			tab = ft_read_file(fd, 0, 0, NULL);
-			if (!tab)
-				return (ft_error());
-			if (!ft_check_errors(tab, -1, 0, 0))
-			{
-				ft_free_tab(&tab);
-				return (ft_error());
-			}
-			if (close(fd) == -1)
-				return (ft_error());
-			ft_solve_tetris(&tab);
-		}
-		else
+		if (!ft_one_tetri(argv[1]) || (fd = open(argv[1], O_RDONLY)) == -1)
 			return (ft_error());
+		tab = ft_read_file(fd, 0, 0, NULL);
+		if (!tab)
+			return (ft_error());
+		if (!ft_check_errors(tab, -1, 0, 0))
+		{
+			ft_free_tab(&tab);
+			return (ft_error());
+		}
+		if (close(fd) == -1)
+			return (ft_error());
+		ft_solve_tetris(&tab);
 		return (0);
 	}
 	return (ft_usage());

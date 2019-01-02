@@ -6,22 +6,22 @@
 #    By: pimichau <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 13:12:08 by pimichau          #+#    #+#              #
-#    Updated: 2018/12/21 10:21:47 by pimichau         ###   ########.fr        #
+#    Updated: 2019/01/02 17:50:33 by pimichau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRC = 	ft_check_file.c 		\
-		ft_check_place.c 		\
-		ft_complete_tetris.c	\
-		ft_init.c				\
-		ft_manipulate_list.c	\
-		main.c
+SRC = 	srcs/ft_check_file.c 		\
+		srcs/ft_check_place.c 		\
+		srcs/ft_complete_tetris.c	\
+		srcs/ft_init.c				\
+		srcs/ft_manipulate_list.c	\
+		srcs/main.c
 
 OBJS = $(SRC:.c=.o)
 
-HEAD = fillit.h
+HEAD = srcs/fillit.h
 
 RM = rm -f
 
@@ -29,19 +29,21 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
+DIR = libft/
+
 all: $(NAME)
 
 $(NAME): $(OBJS) $(HEAD)
-		cd libft/ ; make
-		$(CC) -o $(NAME) $(OBJS) libft/libft.a
+		make -C $(DIR) 
+		$(CC) -o $(NAME) $(OBJS) $(DIR)libft.a
 
 clean:
 		$(RM) $(OBJS)
-		cd libft/ ; make clean
+		make -C $(DIR) clean
 
 fclean: clean
 		$(RM) $(NAME)
-		cd libft/ ; $(RM) libft.a
+		make -C $(DIR) fclean
 
 re: fclean all
 

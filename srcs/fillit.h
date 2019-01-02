@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:40:40 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/21 10:31:05 by pimichau         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:36:18 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct			s_tetri_list
 {
@@ -44,5 +44,6 @@ int						ft_complete_tetris(t_tetri_list *list, char **tab,
 						float c);
 void					ft_display_tab(char **tab);
 void					ft_free_list(t_tetri_list **list);
+int						ft_one_tetri(char *file);
 
 #endif

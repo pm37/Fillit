@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:15:43 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/17 16:00:34 by qvan-der         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:18:30 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,23 @@ void		ft_free_tab(char ***tab)
 	}
 	free(*tab);
 	*tab = NULL;
+}
+
+int			ft_one_tetri(char *argv)
+{
+	int		fd;
+	int		ret;
+	char	text[21];
+
+	if ((fd = open(argv, O_RDONLY)) != -1)
+	{
+		ret = read(fd, text, 20);
+		if (ret < 20)
+			return (0);
+		if (close(fd) == -1)
+			return (0);
+	}
+	return (1);
 }
 
 char		**ft_read_file(int fd, int i, int j, char **tab)
