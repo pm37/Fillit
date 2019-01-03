@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 17:51:15 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/21 10:46:26 by qvan-der         ###   ########.fr       */
+/*   Updated: 2019/01/03 12:25:15 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_get_tetri_height(char **tetri, float *start)
 			height += (ft_strchr(tetri[i], '#')) ? 1 : 0;
 			if (height == 1 && first == 0)
 			{
-				*start += SET_Y(i);
+				*start += set_y(i);
 				first = 1;
 			}
 		}
@@ -62,7 +62,7 @@ static int	ft_get_tetri_width(char **tetri, float *start)
 			}
 		}
 	}
-	*start += SET_X(min_j);
+	*start += set_x(min_j);
 	return (width);
 }
 
@@ -80,9 +80,9 @@ static char	**ft_rebuild_tetri(char **tetri)
 	tab[size] = NULL;
 	size = ft_get_tetri_width(tetri, &strt);
 	i = -1;
-	while (tetri[(GET_Y(strt) + (++i))] && ft_strchr(tetri[(GET_Y(strt) + i)],
+	while (tetri[(get_y(strt) + (++i))] && ft_strchr(tetri[(get_y(strt) + i)],
 	'#'))
-		if (!(tab[i] = ft_strsub(tetri[(GET_Y(strt) + i)], GET_X(strt), size)))
+		if (!(tab[i] = ft_strsub(tetri[(get_y(strt) + i)], get_x(strt), size)))
 			exit(EXIT_SUCCESS);
 	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 16:31:07 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/13 12:43:33 by pimichau         ###   ########.fr       */
+/*   Updated: 2019/01/03 12:25:15 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		ft_put_tetriminos(t_tetri_list *element, char **tab, float c)
 		while (element->tetri[i][++j])
 		{
 			if (element->tetri[i][j] == '#')
-				tab[GET_Y(c) + i][GET_X(c) + j] = element->id;
+				tab[get_y(c) + i][get_x(c) + j] = element->id;
 		}
 	}
 }
@@ -41,7 +41,7 @@ static void		ft_unput_tetriminos(t_tetri_list *element, char **tab, float c)
 		while (element->tetri[i][j])
 		{
 			if (element->tetri[i][j] == '#')
-				tab[GET_Y(c) + i][GET_X(c) + j] = '.';
+				tab[get_y(c) + i][get_x(c) + j] = '.';
 			j++;
 		}
 		i++;
@@ -62,7 +62,7 @@ static float	ft_get_next_coor(char **tab, int x, int y)
 		while (tab[j][i])
 		{
 			if (tab[j][i])
-				return (SET_X(i) + SET_Y(j));
+				return (set_x(i) + set_y(j));
 			i++;
 		}
 		j++;
@@ -83,7 +83,7 @@ int				ft_complete_tetris(t_tetri_list *element, char **tab, float c)
 				return (1);
 			ft_unput_tetriminos(element, tab, c);
 		}
-		c = ft_get_next_coor(tab, GET_X(c), GET_Y(c));
+		c = ft_get_next_coor(tab, get_x(c), get_y(c));
 	}
 	return (0);
 }

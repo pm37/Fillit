@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 16:29:20 by pimichau          #+#    #+#             */
-/*   Updated: 2018/12/13 12:42:46 by pimichau         ###   ########.fr       */
+/*   Updated: 2019/01/03 12:25:15 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	ft_on_line(t_tetri_list *element, char **tab, float c, int i)
 
 	length = ft_strlen(element->tetri[i]);
 	j = -1;
-	while (tab[GET_Y(c) + i] && (size_t)(++j) < length)
+	while (tab[get_y(c) + i] && (size_t)(++j) < length)
 	{
-		if (!(tab[GET_Y(c) + i][GET_X(c) + j]) || (tab[GET_Y(c) + i]
-		[GET_X(c) + j] != '.' && element->tetri[i][j] != '.'))
+		if (!(tab[get_y(c) + i][get_x(c) + j]) || (tab[get_y(c) + i]
+		[get_x(c) + j] != '.' && element->tetri[i][j] != '.'))
 			return (0);
 	}
 	return (1);
@@ -39,13 +39,13 @@ int			ft_check_place(t_tetri_list *elem, char **tab, float c)
 		i = -1;
 		while (elem->tetri[++i])
 		{
-			if ((ft_on_line(elem, tab, c, i)) == 0 || !tab[GET_Y(c) + i])
+			if ((ft_on_line(elem, tab, c, i)) == 0 || !tab[get_y(c) + i])
 			{
 				is_ok = 0;
 				break ;
 			}
 		}
-		return ((is_ok == 1 && tab[GET_Y(c) + i - 1]) ? 1 : 0);
+		return ((is_ok == 1 && tab[get_y(c) + i - 1]) ? 1 : 0);
 	}
 	return (0);
 }

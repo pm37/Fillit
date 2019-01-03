@@ -6,7 +6,7 @@
 /*   By: pimichau <pimichau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 10:40:40 by pimichau          #+#    #+#             */
-/*   Updated: 2019/01/03 11:46:28 by pimichau         ###   ########.fr       */
+/*   Updated: 2019/01/03 12:25:01 by pimichau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int						ft_complete_tetris(t_tetri_list *list, char **tab,
 void					ft_display_tab(char **tab);
 void					ft_free_list(t_tetri_list **list);
 int						ft_one_tetri(char *file);
-int						GET_Y(float f);
-int						GET_X(float f);
-float					SET_X(int x);
-float					SET_Y(int y);
+int						get_y(float f);
+int						get_x(float f);
+float					set_x(int x);
+float					set_y(int y);
 
 #endif
