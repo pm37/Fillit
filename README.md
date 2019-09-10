@@ -68,10 +68,10 @@ Clone the repo and open it:
 
     git clone https://github.com/pimichau/Fillit.git
     cd Fillit
-    
-Then choose a map from the tests folder:
-
     make
+    
+Then choose an input file from the tests folder:
+
     ./fillit tests/valid_1
     
 For this example:
