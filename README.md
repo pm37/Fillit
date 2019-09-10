@@ -71,7 +71,7 @@ Clone the repo and open it:
     
 Then choose a map from the tests folder:
 
-    cat tests/valid_1
+    make
     ./fillit tests/valid_1
     
 For this example:
